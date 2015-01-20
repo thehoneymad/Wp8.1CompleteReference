@@ -1,0 +1,58 @@
+﻿<Page
+    x:Class="GeoLocationTrackingTest.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GeoLocationTrackingTest"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    
+
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <TextBlock Text="Location Tracker" Margin=" 15" FontSize="45"></TextBlock>
+        </Grid>
+            
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Track Location" Click="TrackLocationButton_Click" 
+         HorizontalAlignment="Center" x:Name="TrackLocationButton" 
+         VerticalAlignment="Bottom" />
+
+            <Button IsEnabled="False" Grid.Column="1" Content="Stop Tracking" Click="StoptrackingButton_Click" 
+         HorizontalAlignment="Center"  x:Name="StoptrackingButton" 
+         VerticalAlignment="Bottom" />
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3.5*"></ColumnDefinition>
+                <ColumnDefinition Width="7*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Margin="10">
+                <TextBlock Text="Latitude"  FontSize="23" />
+                <TextBlock  Text="Longitude"  FontSize="23" />
+                <TextBlock  Text="Accuracy"  FontSize="23" />
+            </StackPanel>
+            <StackPanel Margin="10" Grid.Column="1">
+                <TextBlock  Name="LatitudeText" FontSize="23" />
+                <TextBlock   Name="LongitudeText" FontSize="23" />
+                <TextBlock   Name="AccuracyText" FontSize="23" />
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+    
+</Page>
