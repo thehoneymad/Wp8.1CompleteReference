@@ -8,12 +8,21 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding Main, Source={StaticResource Locator}}">
+	<Page.Resources>
+		<Storyboard x:Name="OpenPushPin"/>
+	</Page.Resources>
 
     <Grid>
-        <Maps:MapControl Center="{Binding MyLocation}" >
-            <Grid Background="#FFFF4444" Maps:MapControl.Location="{Binding MyLocation}">
-                <TextBlock  Text="Test" FontFamily="20" Foreground="White" ></TextBlock>
+        <Maps:MapControl  x:Name="MainMap" Center="{Binding MyLocation}" >
+            <Grid x:Name="MyLocationPushpin" Background="#FFFF4444" Maps:MapControl.NormalizedAnchorPoint="0.5,1" Maps:MapControl.Location="{Binding MyLocation}" Width="80" Height="40" >
+                <TextBlock  Text="Here I Am!" FontFamily="65" Margin="10" Foreground="White" ></TextBlock>
             </Grid>
         </Maps:MapControl>
     </Grid>
+    
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Label="Find Me!" Icon="Target" Command="{Binding GetMyLocationCommand}" />
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

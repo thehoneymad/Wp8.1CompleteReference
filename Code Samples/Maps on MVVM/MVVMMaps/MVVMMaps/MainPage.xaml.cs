@@ -1,8 +1,10 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Messaging;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -27,6 +29,9 @@ namespace MVVMMaps
             this.InitializeComponent();
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
+
+            Messenger.Default.Register<Geopoint>(this, Constants.SetMapViewToken, SetMapView);
+
         }
 
         /// <summary>
@@ -36,6 +41,7 @@ namespace MVVMMaps
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            
             // TODO: Prepare page for display here.
 
             // TODO: If your application contains multiple pages, ensure that you are
@@ -43,6 +49,12 @@ namespace MVVMMaps
             // Windows.Phone.UI.Input.HardwareButtons.BackPressed event.
             // If you are using the NavigationHelper provided by some templates,
             // this event is handled for you.
+        }
+
+        private async void SetMapView(Geopoint point)
+        {
+            MyLocationPushpin.Visibility = Visibility.Visible;
+            await MainMap.TrySetViewAsync(point, 15,0,0,Windows.UI.Xaml.Controls.Maps.MapAnimationKind.Bow);
         }
     }
 }

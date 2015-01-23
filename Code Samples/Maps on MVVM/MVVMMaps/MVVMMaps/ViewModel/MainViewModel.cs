@@ -2,6 +2,8 @@ using GalaSoft.MvvmLight;
 using Windows.Devices.Geolocation;
 using System;
 using Windows.UI.Popups;
+using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight.Command;
 
 namespace MVVMMaps.ViewModel
 {
@@ -43,21 +45,39 @@ namespace MVVMMaps.ViewModel
                 RaisePropertyChanged(MyLocationPropertyName);
             }
         }
+
+
+        public const string GetMyLocationCommandPropertyName = "GetMyLocationCommand";
+
+        private RelayCommand _getMyLocationCommand = null;
+
+        public RelayCommand GetMyLocationCommand
+        {
+            get
+            {
+                return _getMyLocationCommand;
+            }
+
+            set
+            {
+                if (_getMyLocationCommand == value)
+                {
+                    return;
+                }
+
+               
+                _getMyLocationCommand = value;
+                RaisePropertyChanged(GetMyLocationCommandPropertyName);
+            }
+        }
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel()
         {
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
-            GetMyLocation();
-            //_testLocation = new Geopoint(new BasicGeoposition() { Latitude = 37.127330, Longitude = 33.123779});
+            
+            GetMyLocationCommand = new RelayCommand(GetMyLocation);
+            
         }
 
         private async void ToggleProgressBar(bool toggle, string message="")
@@ -84,8 +104,10 @@ namespace MVVMMaps.ViewModel
 
                 Geolocator locator = new Geolocator();
                 
-                var location = await locator.GetGeopositionAsync(TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(60));
+                var location = await locator.GetGeopositionAsync(TimeSpan.FromMilliseconds(1), TimeSpan.FromSeconds(60));
                 MyLocation = location.Coordinate.Point;
+
+                Messenger.Default.Send<Geopoint>(MyLocation, Constants.SetMapViewToken);
 
                 ToggleProgressBar(false);
             }
