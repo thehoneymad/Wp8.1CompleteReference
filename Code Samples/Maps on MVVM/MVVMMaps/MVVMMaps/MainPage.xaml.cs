@@ -54,7 +54,10 @@ namespace MVVMMaps
         private async void SetMapView(Geopoint point)
         {
             MyLocationPushpin.Visibility = Visibility.Visible;
+            NearestFoodPlacesButton.Visibility = Visibility.Visible;
             await MainMap.TrySetViewAsync(point, 15,0,0,Windows.UI.Xaml.Controls.Maps.MapAnimationKind.Bow);
         }
+
+        
     }
 }
