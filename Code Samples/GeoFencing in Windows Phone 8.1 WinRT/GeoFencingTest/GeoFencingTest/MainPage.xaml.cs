@@ -26,7 +26,7 @@ namespace GeoFencingTest
     public sealed partial class MainPage : Page
     {
         Geolocator geolocator = new Geolocator();
-        CancellationTokenSource cts = new CancellationTokenSource();
+        CancellationTokenSource CancellationTokenSrc = new CancellationTokenSource();
 
         public MainPage()
         {
@@ -35,20 +35,12 @@ namespace GeoFencingTest
             this.NavigationCacheMode = NavigationCacheMode.Required;
         }
 
-        /// <summary>
-        /// Invoked when this page is about to be displayed in a Frame.
-        /// </summary>
-        /// <param name="e">Event data that describes how this page was reached.
-        /// This parameter is typically used to configure the page.</param>
+        
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            // TODO: Prepare page for display here.
 
-            // TODO: If your application contains multiple pages, ensure that you are
-            // handling the hardware Back button by registering for the
-            // Windows.Phone.UI.Input.HardwareButtons.BackPressed event.
-            // If you are using the NavigationHelper provided by some templates,
-            // this event is handled for you.
+            InitializeGeoFence();
+            
         }
 
 
@@ -56,30 +48,27 @@ namespace GeoFencingTest
         {
             try
             {
-                // Get a geolocator object 
+                
                 geolocator = new Geolocator();
 
-                // Get cancellation token
-                cts = new CancellationTokenSource();
-                CancellationToken token = cts.Token;
-
-                await geolocator.GetGeopositionAsync().AsTask(token);
-
                 
+                CancellationTokenSrc = new CancellationTokenSource();
+                CancellationToken token = CancellationTokenSrc.Token;
 
+                await geolocator.GetGeopositionAsync(TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(30)).AsTask(token);
             }
             
             catch (Exception)
             {
                 if (geolocator.LocationStatus == PositionStatus.Disabled)
                 {
-                    
+                    ShowMessage("Location Services are turned off");
                 }
 
             }
             finally
             {
-                cts = null;
+                CancellationTokenSrc = null;
             }
 
         }
