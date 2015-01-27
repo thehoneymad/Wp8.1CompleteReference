@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoFencingTest", "GeoFencingTest\GeoFencingTest.csproj", "{86EDA38E-2D01-4CB3-B94A-73FAD0D04444}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeofenceTask", "GeofenceTask\GeofenceTask.csproj", "{40055853-F2D5-45DC-A1C2-F500D49B0247}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,14 @@ Global
 		{86EDA38E-2D01-4CB3-B94A-73FAD0D04444}.Release|x86.ActiveCfg = Release|x86
 		{86EDA38E-2D01-4CB3-B94A-73FAD0D04444}.Release|x86.Build.0 = Release|x86
 		{86EDA38E-2D01-4CB3-B94A-73FAD0D04444}.Release|x86.Deploy.0 = Release|x86
+		{40055853-F2D5-45DC-A1C2-F500D49B0247}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40055853-F2D5-45DC-A1C2-F500D49B0247}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40055853-F2D5-45DC-A1C2-F500D49B0247}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{40055853-F2D5-45DC-A1C2-F500D49B0247}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{40055853-F2D5-45DC-A1C2-F500D49B0247}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40055853-F2D5-45DC-A1C2-F500D49B0247}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40055853-F2D5-45DC-A1C2-F500D49B0247}.Release|ARM.ActiveCfg = Release|Any CPU
+		{40055853-F2D5-45DC-A1C2-F500D49B0247}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

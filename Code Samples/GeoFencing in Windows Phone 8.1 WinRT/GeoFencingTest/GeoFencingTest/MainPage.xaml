@@ -11,16 +11,10 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
             <RowDefinition Height="8*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <TextBlock></TextBlock>
-        </Grid>
+        
 
         <Grid Grid.Row="0">
             <TextBlock Text="GeoFencing Sample" FontSize="25" Margin="10"/>
@@ -57,15 +51,23 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
-            <CheckBox Content="Single Use"></CheckBox>
+            <CheckBox Name="SingleUse" Content="Single Use"></CheckBox>
+            
+            
             <TextBlock Grid.Row="1" FontSize="20" Text="Dwell Time" Margin="0,8,0,0"/>
             <TextBox Grid.Column="1" Name="DwellTime"  Grid.Row="1"/>
+            <TextBlock Grid.Row="2" Text="Status" FontSize="25"/>
+            <TextBlock Grid.Row="2" Grid.Column="1" Name="Status"  FontSize="25"/>
 
 
-            <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Create GeoFence" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
-            
+            <StackPanel Grid.Row="3" Grid.ColumnSpan="2">
+                <Button x:Name="CreateBackgroundServiceButton"   Content="Create Background Service" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Click="CreateBackgroundServiceButton_Click" />
+                <Button x:Name="CreateGeoFencingButton"   Content="Create GeoFence" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Click="CreateGeoFencingButton_Click"/>
+            </StackPanel>
+
         </Grid>
 
     </Grid>
